@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إلى أمي ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ============ الأساسيات ============ */
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  :root{
+    --green:#4ade80;
+    --green-light:#86efac;
+    --green-deep:#22c55e;
+    --glow: 0 0 20px rgba(74,222,128,.45);
+  }
+
+  html { scroll-behavior:smooth; }
+
+  body{
+    background:#000;
+    color:#dfffe9;
+    font-family:'Tajawal','Segoe UI',sans-serif;
+    overflow-x:hidden;
+    position:relative;
+    min-height:100vh;
+  }
+
+  /* ============ توهج الخلفية ============ */
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(34,197,94,.20), transparent 45%),
+      radial-gradient(circle at 82% 78%, rgba(74,222,128,.16), transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(16,185,129,.07), transparent 65%);
+    pointer-events:none;
+    z-index:0;
+    animation: breathe 9s ease-in-out infinite;
+  }
+  @keyframes breathe{
+    0%,100%{ opacity:.65; transform:scale(1); }
+    50%    { opacity:1;   transform:scale(1.06); }
+  }
+
+  /* ============ شاشة الترحيب ============ */
+  #welcome{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:radial-gradient(circle at 50% 45%, #04160c 0%, #000 70%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:24px;
+    transition: opacity 1.2s ease, visibility 1.2s ease;
+  }
+  #welcome.hide{ opacity:0; visibility:hidden; }
+
+  .welcome-emoji{
+    font-size:clamp(2.5rem, 10vw, 4.5rem);
+    margin-bottom:18px;
+    animation: floaty 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 22px rgba(74,222,128,.9));
+  }
+  @keyframes floaty{
+    0%,100%{ transform:translateY(0) scale(1); }
+    50%    { transform:translateY(-14px) scale(1.07); }
+  }
+
+  .welcome-title{
+    font-family:'Amiri',serif;
+    font-size:clamp(1.9rem, 7vw, 3.6rem);
+    font-weight:700;
+    color:#8bfcb4;
+    line-height:1.5;
+    text-shadow:
+      0 0 12px rgba(74,222,128,.9),
+      0 0 35px rgba(74,222,128,.55),
+      0 0 80px rgba(34,197,94,.35);
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+  @keyframes glowPulse{
+    0%,100%{
+      text-shadow: 0 0 10px rgba(74,222,128,.7), 0 0 30px rgba(74,222,128,.4);
+    }
+    50%{
+      text-shadow: 0 0 20px rgba(74,222,128,1), 0 0 50px rgba(74,222,128,.75), 0 0 90px rgba(34,197,94,.5);
+    }
+  }
+
+  .welcome-sub{
+    margin-top:18px;
+    font-size:clamp(.95rem, 3.6vw, 1.2rem);
+    color:#9fe8bb;
+    opacity:.85;
+    letter-spacing:.5px;
+  }
+
+  .enter-btn{
+    margin-top:42px;
+    padding:15px 46px;
+    font-family:inherit;
+    font-size:1.05rem;
+    color:#c6ffdd;
+    background:linear-gradient(150deg, rgba(5,46,22,.9), rgba(0,0,0,.95));
+    border:1px solid rgba(74,222,128,.55);
+    border-radius:60px;
+    cursor:pointer;
+    box-shadow:0 0 22px rgba(74,222,128,.3), inset 0 0 22px rgba(74,222,128,.08);
+    transition:.4s;
+  }
+  .enter-btn:hover{
+    transform:translateY(-3px) scale(1.04);
+    box-shadow:0 0 45px rgba(74,222,128,.75), inset 0 0 30px rgba(74,222,128,.18);
+    color:#ffffff;
+  }
+
+  /* ============ الصفحة الرئيسية ============ */
+  .page{
+    position:relative;
+    z-index:1;
+    max-width:900px;
+    margin:0 auto;
+    padding:70px 20px 90px;
+  }
+
+  .hero{
+    text-align:center;
+    margin-bottom:55px;
+  }
+  .hero h1{
+    font-family:'Amiri',serif;
+    font-size:clamp(1.6rem, 6vw, 2.8rem);
+    color:#8bfcb4;
+    text-shadow:0 0 14px rgba(74,222,128,.85), 0 0 45px rgba(74,222,128,.4);
+    margin-bottom:10px;
+  }
+  .hero h2{
+    font-size:clamp(1.3rem, 5.5vw, 2.2rem);
+    font-weight:700;
+    color:#ffffff;
+    text-shadow:0 0 18px rgba(74,222,128,.9), 0 0 55px rgba(34,197,94,.55);
+    letter-spacing:1px;
+  }
+  .hero .line{
+    width:130px;
+    height:2px;
+    margin:22px auto 0;
+    background:linear-gradient(90deg, transparent, var(--green), transparent);
+    box-shadow:0 0 18px rgba(74,222,128,.9);
+  }
+
+  /* ============ البطاقة الزجاجية ============ */
+  .card{
+    background:linear-gradient(160deg, rgba(5,46,22,.38), rgba(0,0,0,.88));
+    border:1px solid rgba(74,222,128,.25);
+    border-radius:26px;
+    padding:38px 28px;
+    box-shadow:
+      0 0 35px rgba(74,222,128,.13),
+      inset 0 0 45px rgba(74,222,128,.045);
+    backdrop-filter:blur(7px);
+    margin-bottom:55px;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::after{
+    content:'';
+    position:absolute;
+    top:-60%;
+    right:-30%;
+    width:260px;
+    height:260px;
+    background:radial-gradient(circle, rgba(74,222,128,.16), transparent 70%);
+    pointer-events:none;
+  }
+
+  .card p{
+    font-size:clamp(1rem, 4vw, 1.22rem);
+    line-height:2.2;
+    color:#e2fff0;
+    margin-bottom:20px;
+    position:relative;
+    z-index:1;
+  }
+  .card p:last-child{ margin-bottom:0; }
+
+  .card .highlight{
+    color:#8bfcb4;
+    font-weight:700;
+    text-shadow:0 0 12px rgba(74,222,128,.7);
+  }
+
+  .card .signature{
+    text-align:left;
+    margin-top:26px;
+    font-family:'Amiri',serif;
+    font-size:1.15rem;
+    color:#7dfba7;
+    text-shadow:0 0 12px rgba(74,222,128,.6);
+  }
+
+  /* ============ إطار الصورة ============ */
+  .photo-frame{
+    max-width:500px;
+    margin:0 auto 55px;
+    border-radius:26px;
+    border:1px solid rgba(74,222,128,.4);
+    box-shadow:0 0 40px rgba(74,222,128,.28), inset 0 0 40px rgba(74,222,128,.06);
+    overflow:hidden;
+    position:relative;
+    min-height:280px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.7);
+    transition:.5s;
+  }
+  .photo-frame:hover{
+    box-shadow:0 0 65px rgba(74,222,128,.55);
+  }
+  .photo-frame img{
+    width:100%;
+    display:block;
+    position:relative;
+    z-index:2;
+  }
+  .photo-placeholder{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    color:#4b7a5d;
+    font-size:.95rem;
+    text-align:center;
+    padding:20px;
+    z-index:1;
+  }
+  .photo-placeholder span:first-child{ font-size:2.2rem; opacity:.55; }
+
+  /* ============ زر الفويس ============ */
+  .voice-section{
+    text-align:center;
+    margin-bottom:55px;
+  }
+
+  .voice-btn{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    padding:20px 46px;
+    font-family:inherit;
+    font-size:clamp(1rem, 4vw, 1.18rem);
+    font-weight:600;
+    color:#b9ffd4;
+    background:linear-gradient(150deg, #052e16, #000);
+    border:1px solid rgba(74,222,128,.55);
+    border-radius:70px;
+    cursor:pointer;
+    box-shadow:0 0 24px rgba(74,222,128,.3), inset 0 0 24px rgba(74,222,128,.08);
+    transition:.4s;
+    z-index:2;
+  }
+  .voice-btn:hover{
+    transform:translateY(-4px);
+    color:#ffffff;
+    box-shadow:0 0 50px rgba(74,222,128,.8), inset 0 0 32px rgba(74,222,128,.2);
+  }
+  .voice-btn .icon{
+    font-size:1.5rem;
+    filter:drop-shadow(0 0 10px rgba(74,222,128,.9));
+    animation: floaty 2.2s ease-in-out infinite;
+  }
+
+  /* حلقات النبض */
+  .voice-btn::before,
+  .voice-btn::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:70px;
+    border:1px solid rgba(74,222,128,.45);
+    animation: ring 3s ease-out infinite;
+    pointer-events:none;
+  }
+  .voice-btn::after{ animation-delay:1.5s; }
+  @keyframes ring{
+    0%  { transform:scale(1);    opacity:.7; }
+    100%{ transform:scale(1.45); opacity:0;  }
+  }
+
+  /* محتوى الفويس */
+  .voice-content{
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transition: max-height .9s ease, opacity .9s ease, margin .9s ease;
+    margin-top:0;
+  }
+  .voice-content.open{
+    max-height:2000px;
+    opacity:1;
+    margin-top:35px;
+  }
+
+  .voice-video{
+    width:100%;
+    max-width:560px;
+    border-radius:20px;
+    border:1px solid rgba(74,222,128,.35);
+    box-shadow:0 0 35px rgba(74,222,128,.28);
+    display:block;
+    margin:0 auto 26px;
+    background:#000;
+  }
+
+  .voice-text{
+    background:linear-gradient(160deg, rgba(5,46,22,.35), rgba(0,0,0,.85));
+    border:1px solid rgba(74,222,128,.22);
+    border-radius:22px;
+    padding:30px 24px;
+    text-align:right;
+    box-shadow:inset 0 0 35px rgba(74,222,128,.05);
+  }
+  .voice-text p{
+    font-size:clamp(.98rem, 3.9vw, 1.15rem);
+    line-height:2.1;
+    color:#e2fff0;
+    margin-bottom:16px;
+    opacity:0;
+    transform:translateY(14px);
+  }
+  .voice-text p:last-child{ margin-bottom:0; }
+
+  .voice-content.open .voice-text p{
+    animation: riseIn .8s ease forwards;
+  }
+  .voice-content.open .voice-text p:nth-child(1){ animation-delay:.15s; }
+  .voice-content.open .voice-text p:nth-child(2){ animation-delay:.35s; }
+  .voice-content.open .voice-text p:nth-child(3){ animation-delay:.55s; }
+  .voice-content.open .voice-text p:nth-child(4){ animation-delay:.75s; }
+  .voice-content.open .voice-text p:nth-child(5){ animation-delay:.95s; }
+  @keyframes riseIn{
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  /* ============ بوكيه الورد ============ */
+  .roses-section{
+    text-align:center;
+    margin-bottom:40px;
+  }
+  .roses-title{
+    font-family:'Amiri',serif;
+    font-size:clamp(1.2rem, 4.5vw, 1.7rem);
+    color:#8bfcb4;
+    margin-bottom:26px;
+    text-shadow:0 0 16px rgba(74,222,128,.75);
+  }
+  .roses-frame{
+    max-width:460px;
+    margin:0 auto;
+    border-radius:26px;
+    border:1px solid rgba(74,222,128,.4);
+    box-shadow:0 0 45px rgba(74,222,128,.3), inset 0 0 45px rgba(74,222,128,.06);
+    overflow:hidden;
+    position:relative;
+    min-height:300px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.7);
+    transition:.5s;
+  }
+  .roses-frame:hover{
+    box-shadow:0 0 75px rgba(74,222,128,.6);
+    transform:translateY(-4px);
+  }
+  .roses-frame img{
+    width:100%;
+    display:block;
+    position:relative;
+    z-index:2;
+  }
+  .roses-placeholder{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    color:#4b7a5d;
+    font-size:.95rem;
+    text-align:center;
+    padding:20px;
+    z-index:1;
+  }
+  .roses-placeholder span:first-child{
+    font-size:3rem;
+    animation: floaty 3.4s ease-in-out infinite;
+    filter:drop-shadow(0 0 18px rgba(74,222,128,.7));
+  }
+
+  /* ============ التذييل ============ */
+  footer{
+    text-align:center;
+    margin-top:60px;
+    font-size:.9rem;
+    color:#3f7a56;
+    letter-spacing:.5px;
+  }
+  footer .heart{
+    color:#4ade80;
+    text-shadow:0 0 14px rgba(74,222,128,.9);
+    animation: beat 1.6s ease-in-out infinite;
+    display:inline-block;
+  }
+  @keyframes beat{
+    0%,100%{ transform:scale(1); }
+    50%    { transform:scale(1.28); }
+  }
+
+  /* ============ موبايل ============ */
+  @media (max-width:600px){
+    .card{ padding:28px 20px; border-radius:22px; }
+    .page{ padding:50px 16px 70px; }
+    .voice-btn{ padding:17px 32px; }
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- ================= شاشة الترحيب ================= -->
+  <div id="welcome">
+    <div class="welcome-emoji">🌿</div>
+    <h1 class="welcome-title">أهلاً وسهلاً بأمي<br>الغالية ❤️</h1>
+    <p class="welcome-sub">هذا الموقع الصغير كله لكِ يا أغلى الناس</p>
+    <button class="enter-btn" onclick="enterSite()">اضغطي للدخول ✨</button>
+  </div>
+
+  <!-- ================= المحتوى ================= -->
+  <main class="page">
+
+    <!-- العنوان -->
+    <section class="hero">
+      <h1>إلى أمي الغالية</h1>
+      <h2>حمادي</h2>
+      <div class="line"></div>
+    </section>
+
+    <!-- كلام لأمي -->
+    <section class="card">
+      <p>
+        يا <span class="highlight">أمي</span>… يا أول نبضة في قلبي،
+        ويا آخر دعوة في لساني.
+      </p>
+      <p>
+        لو جمعت كل كلمات الدنيا ما قدرت أوصف
+        <span class="highlight">حنانك</span> ولا وقفتك معي في كل لحظة.
+        أنتِ البيت اللي أرجعه، والصوت اللي يطمّن قلبي،
+        والدعوة اللي تفتح لي كل أبواب الخير.
+      </p>
+      <p>
+        تعبتي كثير عشاني، وسهرتي كثير، ودعيتي كثير…
+        وأنا كل اللي أقدر أقوله:
+        <span class="highlight">الله يرضى عنك، ويطول بعمرك، ويخليك لي</span>
+        يا أغلى إنسانة في حياتي.
+      </p>
+      <p>
+        كل عام وأنتِ بخير، وأنتِ أجمل نعمة ربي عطاني إياها. 🤍
+      </p>
+      <p class="signature">— من قلب ولدك ❤️</p>
+    </section>
+
+    <!-- صورة فوق الفويس -->
+    <section class="photo-frame">
+      <div class="photo-placeholder">
+        <span>🖼️</span>
+        <span>ضع رابط الصورة هنا</span>
+      </div>
+      <!-- ===== ضع رابط الصورة هنا بين علامتي التنصيص ===== -->
+      <img src="https://www.image2url.com/r2/default/images/1790079148447-f497210e-4684-4adb-8d3f-5f2634d1e0e5.jpg" alt="صورة لأمي الغالية">
+    </section>
+
+    <!-- الفويس -->
+    <section class="voice-section">
+      <button class="voice-btn" onclick="toggleVoice()" id="voiceBtn">
+        <span class="icon">🎙️</span>
+        <span id="voiceBtnText">اضغطي لسماع كلامي لكِ</span>
+      </button>
+
+      <div class="voice-content" id="voiceContent">
+
+        <!-- ===== ضع رابط الفيديو (أو الصوت) هنا بين علامتي التنصيص ===== -->
+        <video class="voice-video" id="voiceVideo" controls playsinline
+               src="https://www.image2url.com/r2/default/videos/1790078834209-0787b402-542f-4cf7-aca9-dec6b1159ccd.mp4"></video>
+
+        <div class="voice-text">
+          <p>أمي… إذا وصلتك هذي الكلمات، اعرفي إنك أغلى شي عندي. ❤️</p>
+          <p>ما أنسى تعبك، ولا سهرك، ولا دعواتك اللي تسبقني في كل خطوة.</p>
+          <p>الله يجعل كل يوم من أيامك راحة وسعادة، ويريح قلبك مثل ما ريحتي قلبي.</p>
+          <p>أحبك يا أمي… أحبك كثر ما في الدنيا من نَفَس. 🌿</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- بوكيه الورد -->
+    <section class="roses-section">
+      <h3 class="roses-title">🌹 بوكيه ورد لأمي 🌹</h3>
+      <div class="roses-frame">
+        <div class="roses-placeholder">
+          <span>💐</span>
+          <span>ضع رابط صورة بوكيه الورد هنا</span>
+        </div>
+        <!-- ===== ضع رابط صورة بوكيه الورد هنا بين علامتي التنصيص ===== -->
+        <img src="https://www.image2url.com/r2/default/images/1790079446701-a12d7a96-ad6f-4eef-b034-a5b29314270d.jpg" alt="بوكيه ورد لأمي">
+      </div>
+    </section>
+
+    <footer>
+      صُنع بحب <span class="heart">❤</span> لأمي
+    </footer>
+
+  </main>
+
+<script>
+  /* ===== الدخول للموقع ===== */
+  function enterSite(){
+    document.getElementById('welcome').classList.add('hide');
+    document.body.style.overflow = 'auto';
+  }
+
+  /* ===== فتح وإغلاق الفويس ===== */
+  let voiceOpen = false;
+  function toggleVoice(){
+    const content = document.getElementById('voiceContent');
+    const btnText = document.getElementById('voiceBtnText');
+    const video   = document.getElementById('voiceVideo');
+
+    voiceOpen = !voiceOpen;
+
+    if(voiceOpen){
+      content.classList.add('open');
+      btnText.textContent = 'إغلاق الرسالة 🤍';
+      if(video.getAttribute('src') && video.getAttribute('src').trim() !== ''){
+        video.play().catch(()=>{});
+      }
+    } else {
+      content.classList.remove('open');
+      btnText.textContent = 'اضغطي لسماع كلامي لكِ';
+      video.pause();
+    }
+  }
+
+  /* ===== إخفاء الصور الفارغة تلقائياً ===== */
+  document.querySelectorAll('img').forEach(img => {
+    const src = img.getAttribute('src');
+    if(!src || src.trim() === ''){
+      img.style.display = 'none';
+    }
+    img.addEventListener('error', () => { img.style.display = 'none'; });
+  });
+
+  /* ===== إخفاء الفيديو إذا كان الرابط فارغاً ===== */
+  (function(){
+    const v = document.getElementById('voiceVideo');
+    const src = v.getAttribute('src');
+    if(!src || src.trim() === ''){
+      v.style.display = 'none';
+    }
+  })();
+
+  /* ===== منع التمرير أثناء شاشة الترحيب ===== */
+  document.body.style.overflow = 'hidden';
+</script>
+
+</body>
+</html>
